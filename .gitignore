@@ -1,0 +1,7 @@
+node_modules
+build
+http_requrests
+npm-debug.log
+.nyc
+.env
+.DS_Store

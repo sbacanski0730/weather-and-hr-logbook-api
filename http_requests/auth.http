@@ -1,0 +1,49 @@
+# Just user register
+post http://localhost:4012/auth/register
+Content-Type: application/json
+
+{
+    "email": "szymon@gmail.com",
+    "password":"szymon"
+}
+
+###
+# ERROR CALL - User with that email already exit
+post http://localhost:4012/auth/register
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password":"admin"
+}
+
+###
+# Just user login
+post http://localhost:4012/auth/login
+Content-Type: application/json
+
+{
+    "email": "szymon@gmail.com",
+    "password":"szymon"
+}
+
+###
+# ERROR CALL - User with that email doesn't exist
+post http://localhost:4012/auth/login
+Content-Type: application/json
+
+{
+    "email": "gasdawfbegavaa@gmail.com",
+    "password":"admin"
+}
+
+###
+# ERROR CALL - Wrong password
+post http://localhost:4012/auth/login
+Content-Type: application/json
+
+{
+    "email": "szymon@gmail.com",
+    "password":"ladawposvadwdasdawdawdne"
+}
+
