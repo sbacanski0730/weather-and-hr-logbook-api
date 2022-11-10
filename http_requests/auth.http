@@ -1,15 +1,17 @@
+//TODO: wyczyścić bazę danych z testowych użytkowników i dostosować ten plik do szybkiego testowania
+@port = 5014
 # Just user register
-post http://localhost:4012/auth/register
+post http://localhost:{{port}}/auth/register
 Content-Type: application/json
 
 {
-    "email": "szymon@gmail.com",
-    "password":"szymon"
+    "email": "szymonqw@gmail.com",
+    "password":"szymonqw"
 }
 
 ###
 # ERROR CALL - User with that email already exit
-post http://localhost:4012/auth/register
+post http://localhost:{{port}}/auth/register
 Content-Type: application/json
 
 {
@@ -17,19 +19,21 @@ Content-Type: application/json
     "password":"admin"
 }
 
+# LOGIN ===================================
+
 ###
 # Just user login
-post http://localhost:4012/auth/login
+post http://localhost:{{port}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "szymon@gmail.com",
-    "password":"szymon"
+    "email": "szymon123@gmail.com",
+    "password":"szymon123"
 }
 
 ###
 # ERROR CALL - User with that email doesn't exist
-post http://localhost:4012/auth/login
+post http://localhost:{{port}}/auth/login
 Content-Type: application/json
 
 {
@@ -39,11 +43,11 @@ Content-Type: application/json
 
 ###
 # ERROR CALL - Wrong password
-post http://localhost:4012/auth/login
+post http://localhost:{{port}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "szymon@gmail.com",
+    "email": "szymonqw@gmail.com",
     "password":"ladawposvadwdasdawdawdne"
 }
 

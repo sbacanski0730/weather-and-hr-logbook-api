@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const routesAuth = require('./routes/auth.js');
+const authRoutes = require('./routes/authRoutes.js');
 
 app.get('/', (req, res) => {
 	console.log("Hello World it's me Postman");
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 // Middlewares
 app.use(express.json());
 app.use(cors());
-app.use('/auth', routesAuth);
+app.use('/auth', authRoutes);
 
 //DataBase Connection
 mongoose.connect(process.env.DEV_DB_CONNECTION, () => {
