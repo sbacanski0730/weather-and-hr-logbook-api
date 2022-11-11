@@ -1,12 +1,14 @@
 //TODO: wyczyścić bazę danych z testowych użytkowników i dostosować ten plik do szybkiego testowania
 @port = 5014
+@name = szymon
+@password = szymon
 # Just user register
 post http://localhost:{{port}}/auth/register
 Content-Type: application/json
 
 {
-    "email": "szymonqw@gmail.com",
-    "password":"szymonqw"
+    "email": "{{name}}@gmail.com",
+    "password":"{{password}}"
 }
 
 ###
@@ -27,8 +29,8 @@ post http://localhost:{{port}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "szymon123@gmail.com",
-    "password":"szymon123"
+    "email": "{{name}}@gmail.com",
+    "password":"{{password}}"
 }
 
 ###
@@ -38,7 +40,7 @@ Content-Type: application/json
 
 {
     "email": "gasdawfbegavaa@gmail.com",
-    "password":"admin"
+    "password":"{{password}}"
 }
 
 ###
@@ -47,7 +49,7 @@ post http://localhost:{{port}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "szymonqw@gmail.com",
+    "email": "{{name}}@gmail.com",
     "password":"ladawposvadwdasdawdawdne"
 }
 

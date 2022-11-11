@@ -8,3 +8,4 @@ npm-debug.log
 .idea
 config.env
 http_requests
+*.http

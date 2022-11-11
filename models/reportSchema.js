@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const reportSchema = new mongoose.Schema({
-	name: {
+	ownerId: {
+		type: String,
+		require: true,
+	},
+	title: {
 		type: String,
 		require: true,
 	},
@@ -35,4 +39,5 @@ const reportSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = reportSchema;
+const Report = mongoose.model('Report', reportSchema);
+module.exports = Report;
