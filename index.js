@@ -1,29 +1,19 @@
-require('dotenv').config({ path: './config.env' });
-const express = require('express');
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import authRoutes from './routes/authRoutes.js';
+
 const app = express();
-const cors = require('cors');
-const mongoose = require('mongoose');
 
-const authRoutes = require('./routes/authRoutes.js');
-const reportRoutes = require('./routes/reportRoutes.js');
-
-app.get('/', (req, res) => {
-	console.log("Hello World it's me Postman");
-	res.json('I can hear you');
-});
-
-// Middlewares
-app.use(express.json());
 app.use(cors());
+// app.use(express.json());
 app.use('/auth', authRoutes);
-app.use('/report', reportRoutes);
 
-//DataBase Connection
-mongoose.connect(process.env.DEV_DB_CONNECTION, () => {
-	console.log('Database connected');
-});
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.CONNECTION_URL, () => console.log('Database Connected'));
 
-//Listening
-app.listen(process.env.PORT || 4013, () => {
-	console.log(`Server is running at port: ${process.env.PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server is listening at port ${PORT}`));
