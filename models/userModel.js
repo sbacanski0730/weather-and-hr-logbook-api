@@ -1,39 +1,19 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const employeeSchema = require('./employeeSchema');
+import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
 	email: {
 		type: String,
-		require: true,
+		required: [true, 'Email is required'],
+		minLength: [6, 'Email has to be at least 6 characters long'],
+		maxLength: [30, "Email can't be longer than 30 character"],
 	},
 	password: {
 		type: String,
-		require: true,
-		minLength: 5,
+		required: [true, 'Password is needed'],
+		minLength: [5, 'Password has to be at least 6 characters long'],
+		maxLength: [60, "Password can't be longer than 30 character"],
 	},
-	reportsIds: [
-		{
-			type: String,
-		},
-	],
-	employees: [
-		{
-			type: employeeSchema,
-		},
-	],
 });
 
-UserSchema.pre('save', async function () {
-	const salt = await bcrypt.genSalt(12);
-	this.password = await bcrypt.hash(this.password, salt);
-});
-
-UserSchema.methods.isPasswordCorrect = async function (req_password) {
-	// TODO: sprawdzic czy usuniecie poniższego console.log() nic nie popsuje
-	console.log('user', await bcrypt.compare(req_password, this.password));
-	return await bcrypt.compare(req_password, this.password);
-};
-
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+const UserModel = mongoose.model('User', userSchema);
+export default UserModel;
