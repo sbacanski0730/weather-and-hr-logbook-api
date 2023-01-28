@@ -18,8 +18,6 @@ export const loginUser = async (req, res) => {
 			throw new HttpError('Wrong password', 400);
 		}
 
-		console.log(loggingUser._id.toString());
-
 		const token = jsonwebtoken.sign(
 			loggingUser._id.toString(),
 			process.env.PROJECT_SECRET
