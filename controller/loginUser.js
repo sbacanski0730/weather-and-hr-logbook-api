@@ -19,7 +19,7 @@ export const loginUser = async (req, res) => {
 		}
 
 		const token = jsonwebtoken.sign(
-			loggingUser._id.toString(),
+			{ id: loggingUser._id.toString() },
 			process.env.PROJECT_SECRET
 		);
 
