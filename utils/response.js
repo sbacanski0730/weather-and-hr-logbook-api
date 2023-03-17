@@ -1,9 +1,7 @@
-const response = (status, message, content) => {
-	return {
-		status: status,
-		message: message,
-		content: content,
-	};
-};
+const response = (status, message, content) => ({
+  status,
+  message,
+  content,
+});
 
 export default response;

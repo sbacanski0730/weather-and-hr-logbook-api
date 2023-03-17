@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  // "plugins": ["import"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base"
+    // "eslint-plugin-import"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 14,
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": ["error", "windows"],
+    "no-underscore-dangle": ["error", { "allow": ["_id", "foo_"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/extensions": [
+      "error",
+      {
+        "js": "ignorePackages"
+      }
+    ]
+  }
+}
