@@ -9,3 +9,4 @@ npm-debug.log
 config.env
 http_requests
 *.http
+.vscode
