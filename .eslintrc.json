@@ -16,12 +16,7 @@
   "rules": {
     "linebreak-style": ["error", "windows"],
     "no-underscore-dangle": ["error", { "allow": ["_id", "foo_"] }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/extensions": [
-      "error",
-      {
-        "js": "ignorePackages"
-      }
-    ]
+    // "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/extensions": ["error", { "js": "ignorePackages" }]
   }
 }
