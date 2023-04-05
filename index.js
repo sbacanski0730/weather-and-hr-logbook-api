@@ -10,7 +10,14 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  exposedHeaders: 'token',
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors());
+
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
