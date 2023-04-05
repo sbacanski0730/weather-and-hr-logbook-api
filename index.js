@@ -5,6 +5,7 @@ import cors from 'cors';
 import connectDatabase from './utils/connectDatabase.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.options('*', cors());
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/report', reportRoutes);
 
 // eslint-disable-next-line no-console
 connectDatabase(() => console.log('Database Connected'));
