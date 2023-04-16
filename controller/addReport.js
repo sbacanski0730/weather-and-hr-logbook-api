@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import UserModel from '../models/userModel.js';
 import response from '../utils/response.js';
 import HttpError from '../utils/HttpError.js';
+import ReportModel from '../models/reportModel.js';
 
 const addReport = async (req, res) => {
   try {
@@ -22,7 +23,7 @@ const addReport = async (req, res) => {
 
     const { title, date, skyStatus, shipStatus, windSpeed, shipLocalization, content } = req.body;
 
-    const newReport = {
+    const newReport = await ReportModel.create({
       title,
       date,
       skyStatus,
@@ -30,7 +31,7 @@ const addReport = async (req, res) => {
       windSpeed,
       shipLocalization,
       content,
-    };
+    });
 
     await user.userReports.push(newReport);
     await user.save();
