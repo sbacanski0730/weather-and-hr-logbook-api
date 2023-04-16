@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import reportSchema from './reportModel.js';
+// import reportSchema from './reportModel.js';
 
 const userSchema = mongoose.Schema({
   email: {
@@ -15,8 +15,9 @@ const userSchema = mongoose.Schema({
     maxLength: [128, "Password can't be longer than 30 character"],
   },
   userReports: {
-    type: [reportSchema],
+    type: [mongoose.Types.ObjectId],
     default: [],
+    ref: 'ReportModel',
   },
 });
 
