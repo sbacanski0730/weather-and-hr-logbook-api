@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-// import reportSchema from './reportModel.js';
+import ReportModel from './reportModel.js';
 
 const userSchema = mongoose.Schema({
   email: {
@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
   userReports: {
     type: [mongoose.Types.ObjectId],
     default: [],
-    ref: 'ReportModel',
+    ref: ReportModel,
   },
 });
 
