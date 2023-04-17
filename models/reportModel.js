@@ -1,5 +1,53 @@
 import mongoose from 'mongoose';
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Report:
+ *      type: object
+ *      required:
+ *        - title
+ *        - date
+ *        - skyStatus
+ *        - shipStatus
+ *        - windSpeed
+ *        - shipLocalization
+ *        - content
+ *      properties:
+ *        title:
+ *          type: string
+ *          example: This is the report title
+ *        date:
+ *          type: string
+ *          format: string
+ *        skyStatus:
+ *          type: string
+ *          enum:
+ *            - rain
+ *            - sun
+ *            - wind
+ *            - snow
+ *            - heavy-clouds
+ *            - clouds
+ *          example: rain
+ *        shipStatus:
+ *          type: string
+ *          enum:
+ *            - in harbor
+ *            - at sea
+ *          example: at sea
+ *        windSpeed:
+ *          type: number
+ *          example: 16
+ *        shipLocalization:
+ *          type: string
+ *          example: 25.0131564 0.655440
+ *        content:
+ *          type: string
+ *          example: Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, sed?
+ */
+
 const reportSchema = mongoose.Schema({
   reportId: {
     type: mongoose.ObjectId,

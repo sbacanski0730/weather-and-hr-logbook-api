@@ -4,6 +4,39 @@ import response from '../utils/response.js';
 import HttpError from '../utils/HttpError.js';
 import ReportModel from '../models/reportModel.js';
 
+/** https://www.youtube.com/watch?v=S8kmHtQeflo
+ * @swagger
+ * /report/add:
+ *  post:
+ *    tags: [reports]
+ *    summary: add new Report
+ *    description: "This endpoint serves to adding new reports to users accounts"
+ *    parameters:
+ *      - in: header
+ *        required: true
+ *        name: token
+ *        description: This is the user's token received at sign in.
+ *      - in: query
+ *        name: title
+ *        description: Report title
+ *    requestBody:
+ *      description: "This is example how request to this endpoint should looks like."
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: #/components/schemas/Report
+ *    responses:
+ *      201:
+ *        description: Report has been added.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Report'
+ *      401:
+ *          description: __token didn't provided__ or __wrong token__.
+ */
+
 const addReport = async (req, res) => {
   try {
     const { token } = req.headers;

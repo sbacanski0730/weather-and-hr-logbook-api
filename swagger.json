@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Weather and HR Logbook",
+    "description": "This is a backend part of currently developing project [weather-and-hr-logbook](https://github.com/sbacanski0730/weather-and-hr-logbook-web) which more precise documentation is located in README of Web part of the project.",
+    "contact": "s.bacanski@gmail.com",
+    "version": "1.0"
+  },
+  "externalDocs": {
+    "description": "Find author on Github",
+    "url": "https://github.com/sbacanski0730"
+  },
+  "tags": [
+    {
+      "name": "auth",
+      "description": "All operation for authentication"
+    },
+    {
+      "name": "reports",
+      "description": "All operation which can be done on reports"
+    },
+    {
+      "name": "user",
+      "description": "All operation which can be done on reports"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Register new user",
+        "description": "Register new user by adding his login and password",
+        "operationId": "registerUser",
+        "parameters": [
+          {
+            "name": "email",
+            "description": "User email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "available"
+            }
+          },
+          {
+            "name": "password",
+            "description": "User password",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "available"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            },
+            "required": true
+          }
+        },
+        "response": {
+          "200": {
+            "description": "Successful operation",
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Login user to application",
+        "description": "Login user by adding his email and password",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "User email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "User password",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "available"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Register": {
+        "type": "Object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "username@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      }
+    }
+  }
+}

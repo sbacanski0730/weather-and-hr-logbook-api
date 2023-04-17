@@ -1,6 +1,28 @@
 import mongoose from 'mongoose';
 import ReportModel from './reportModel.js';
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    User:
+ *      type: object
+ *      required:
+ *        - email
+ *        - password
+ *      properties:
+ *        email:
+ *          type: string
+ *          example: user@user.com
+ *        password:
+ *          type: string
+ *          example: 123456
+ *        userReports:
+ *          type: array
+ *          items:
+ *            $ref: '#/components/schemas/Report'
+ */
+
 const userSchema = mongoose.Schema({
   email: {
     type: String,
