@@ -34,6 +34,26 @@ const reportSchema = mongoose.Schema({
     type: String,
     required: false,
   },
+  startHarbour: {
+    type: String,
+    required: false,
+    default: '-',
+  },
+  destinationHarbour: {
+    type: String,
+    required: false,
+    default: '-',
+  },
+  watchNumber: {
+    type: Number,
+    enum: [1, 2, 3, 4, 5, 6, 7],
+    default: 1,
+  },
+  watchOfficer: {
+    type: String,
+    required: false,
+    default: '',
+  },
   content: {
     type: String,
     required: false,
