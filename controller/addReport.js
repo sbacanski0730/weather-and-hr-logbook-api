@@ -21,7 +21,19 @@ const addReport = async (req, res) => {
 
     if (!user) throw new HttpError("This user doesn't exist", 400);
 
-    const { title, date, skyStatus, shipStatus, windSpeed, shipLocalization, content } = req.body;
+    const {
+      title,
+      date,
+      skyStatus,
+      shipStatus,
+      windSpeed,
+      shipLocalization,
+      content,
+      startHarbour,
+      destinationHarbour,
+      watchNumber,
+      watchOfficer,
+    } = req.body;
 
     const newReport = await ReportModel.create({
       title,
@@ -31,6 +43,10 @@ const addReport = async (req, res) => {
       windSpeed,
       shipLocalization,
       content,
+      startHarbour,
+      destinationHarbour,
+      watchNumber,
+      watchOfficer,
     });
 
     await user.userReports.push(newReport);
