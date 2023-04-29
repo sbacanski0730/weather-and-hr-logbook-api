@@ -1,39 +1,25 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const employeeSchema = require('./employeeSchema');
+import mongoose from 'mongoose';
+import ReportModel from './reportModel.js';
 
-const UserSchema = new mongoose.Schema({
-	email: {
-		type: String,
-		require: true,
-	},
-	password: {
-		type: String,
-		require: true,
-		minLength: 5,
-	},
-	reportsIds: [
-		{
-			type: String,
-		},
-	],
-	employees: [
-		{
-			type: employeeSchema,
-		},
-	],
+const userSchema = mongoose.Schema({
+  email: {
+    type: String,
+    required: [true, 'Email is required'],
+    minLength: [6, 'Email has to be at least 6 characters long'],
+    maxLength: [128, "Email can't be longer than 30 character"],
+  },
+  password: {
+    type: String,
+    required: [true, 'Password is needed'],
+    minLength: [5, 'Password has to be at least 6 characters long'],
+    maxLength: [128, "Password can't be longer than 30 character"],
+  },
+  userReports: {
+    type: [mongoose.Types.ObjectId],
+    default: [],
+    ref: ReportModel,
+  },
 });
 
-UserSchema.pre('save', async function () {
-	const salt = await bcrypt.genSalt(12);
-	this.password = await bcrypt.hash(this.password, salt);
-});
-
-UserSchema.methods.isPasswordCorrect = async function (req_password) {
-	// TODO: sprawdzic czy usuniecie poniższego console.log() nic nie popsuje
-	console.log('user', await bcrypt.compare(req_password, this.password));
-	return await bcrypt.compare(req_password, this.password);
-};
-
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+const UserModel = mongoose.model('User', userSchema);
+export default UserModel;

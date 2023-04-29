@@ -1,29 +1,32 @@
-require('dotenv').config({ path: './config.env' });
-const express = require('express');
+import dotenv from 'dotenv';
+
+import express from 'express';
+import cors from 'cors';
+import connectDatabase from './utils/connectDatabase.js';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
+
+dotenv.config();
+
 const app = express();
-const cors = require('cors');
-const mongoose = require('mongoose');
 
-const authRoutes = require('./routes/authRoutes.js');
-const reportRoutes = require('./routes/reportRoutes.js');
+const corsOptions = {
+  origin: '*',
+  exposedHeaders: 'token',
+};
 
-app.get('/', (req, res) => {
-	console.log("Hello World it's me Postman");
-	res.json('I can hear you');
-});
+app.use(cors(corsOptions));
+app.options('*', cors());
 
-// Middlewares
 app.use(express.json());
-app.use(cors());
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 app.use('/report', reportRoutes);
 
-//DataBase Connection
-mongoose.connect(process.env.DEV_DB_CONNECTION, () => {
-	console.log('Database connected');
-});
+// eslint-disable-next-line no-console
+connectDatabase(() => console.log('Database Connected'));
 
-//Listening
-app.listen(process.env.PORT || 4013, () => {
-	console.log(`Server is running at port: ${process.env.PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`Server is listening at port ${PORT}`));

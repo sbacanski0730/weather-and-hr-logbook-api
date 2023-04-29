@@ -1,14 +1,12 @@
-const router = require('express').Router();
-const addReport = require('../controller/reports/addReportFunction');
-const deleteRouter = require('../controller/reports/deleteReportFunction.js');
-const getAllReports = require('../controller/reports/getAllReportsFunction');
-const getReportById = require('../controller/reports/getReportByIdFunction');
-const updateReport = require('../controller/reports/updateReportFunction');
+import express from 'express';
+import addReport from '../controller/addReport.js';
+import deleteReport from '../controller/deleteReport.js';
+import updateReport from '../controller/updateReport.js';
 
-router.get('/all', getAllReports);
-router.get('/:reportId', getReportById);
+const router = express.Router();
+
 router.post('/add', addReport);
-router.put('/update/:reportId', updateReport);
-router.delete('/delete/:reportId', deleteRouter);
+router.post('/delete', deleteReport);
+router.post('/update', updateReport);
 
-module.exports = router;
+export default router;
