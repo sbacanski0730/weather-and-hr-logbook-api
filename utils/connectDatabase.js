@@ -5,10 +5,10 @@ const connectDatabase = (callback) => {
   let connectionURL = '';
 
   if (process.env.PROJECT_STATUS === ('dev' || 'development')) {
-    connectionURL = process.env.CONNECTION_URL.replace('<clusterName>', 'dev');
+    connectionURL = process.env.DB_URL.replace('<clusterName>', 'dev');
   }
   if (process.env.PROJECT_STATUS === ('prod' || 'production')) {
-    connectionURL = process.env.CONNECTION_URL.replace('<clusterName>', 'production');
+    connectionURL = process.env.DB_URL.replace('<clusterName>', 'production');
   }
 
   mongoose.connect(connectionURL, callback());
