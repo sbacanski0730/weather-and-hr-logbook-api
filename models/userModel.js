@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
     default: [],
     ref: ReportModel,
   },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const UserModel = mongoose.model('User', userSchema);
