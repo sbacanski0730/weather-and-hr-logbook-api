@@ -11,7 +11,7 @@ const reportSchema = mongoose.Schema({
     maxLength: [128, "Report's title should has no more than 5 characters"],
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
     default: new Date().toISOString(),
   },
@@ -29,6 +29,7 @@ const reportSchema = mongoose.Schema({
   windSpeed: {
     type: Number,
     default: 0,
+    required: false,
   },
   shipLocalization: {
     type: String,
