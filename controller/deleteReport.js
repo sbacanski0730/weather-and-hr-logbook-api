@@ -6,34 +6,28 @@ import UserModel from '../models/userModel.js';
 
 const deleteReport = async (req, res) => {
   try {
-    const { token } = req.headers;
-    if (!token) throw new HttpError("Request has to contains user's token");
+    console.log(req.headers.token);
+    console.log(req.params.id);
 
-    const { reportId } = req.body;
-    if (!reportId) throw new HttpError("This report id doesn't exist", 400);
+    if (!req.headers.token) throw new HttpError("Token didn't provided");
+    if (!req.params.id) throw new HttpError('Unknown ID');
 
-    const { id: userId } = jwt.verify(token, process.env.PROJECT_SECRET, (err, decode) => {
-      if (err) {
-        throw new HttpError(err.message, 401);
-      }
-      return decode;
-    });
+    const { id } = jwt.verify(req.headers.token, process.env.PROJECT_SECRET);
 
-    const user = await UserModel.findById(userId);
-    if (!user) throw new HttpError("User of this token doesn't exist", 404);
+    const user = await UserModel.findById(id);
+    if (!user) throw new HttpError('Unexpected user');
 
-    const reportToDelete = await ReportModel.findById(reportId);
-    if (!reportToDelete) throw new HttpError("The report of this id can't be find", 404);
+    // console.log(user);
+    // console.log(user.report);
 
-    const { _id: reportToDeleteObjectId } = reportToDelete;
+    const deletedReport = await ReportModel.findByIdAndDelete(req.params.id);
 
-    if (!user.userReports.includes(reportToDeleteObjectId)) {
-      throw new HttpError("User doesn't have this report", 404);
-    }
+    console.log(user.userReports.indexOf(deletedReport._id));
 
-    user.userReports.splice(user.userReports.indexOf(reportToDeleteObjectId), 1);
+    user.userReports = user.userReports.filter((e) => !(e.toString() === req.params.id));
+    await user.save();
 
-    user.save();
+    console.log('after: ', user.userReports);
 
     res.status(200).json(response(true, 'Report deleted successfully'));
   } catch (err) {

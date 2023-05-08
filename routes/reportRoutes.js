@@ -7,7 +7,7 @@ import getReport from '../controller/getReport.js';
 const router = express.Router();
 
 router.post('/add', addReport);
-router.post('/delete', deleteReport);
+router.post('/delete/:id', deleteReport);
 router.post('/update', updateReport);
 router.get('/:id', getReport);
 
