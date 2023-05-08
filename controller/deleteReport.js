@@ -20,14 +20,10 @@ const deleteReport = async (req, res) => {
     // console.log(user);
     // console.log(user.report);
 
-    const deletedReport = await ReportModel.findByIdAndDelete(req.params.id);
-
-    console.log(user.userReports.indexOf(deletedReport._id));
+    await ReportModel.findByIdAndDelete(req.params.id);
 
     user.userReports = user.userReports.filter((e) => !(e.toString() === req.params.id));
     await user.save();
-
-    console.log('after: ', user.userReports);
 
     res.status(200).json(response(true, 'Report deleted successfully'));
   } catch (err) {
