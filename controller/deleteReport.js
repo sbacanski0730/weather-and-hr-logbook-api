@@ -6,9 +6,6 @@ import UserModel from '../models/userModel.js';
 
 const deleteReport = async (req, res) => {
   try {
-    console.log(req.headers.token);
-    console.log(req.params.id);
-
     if (!req.headers.token) throw new HttpError("Token didn't provided");
     if (!req.params.id) throw new HttpError('Unknown ID');
 
@@ -16,9 +13,6 @@ const deleteReport = async (req, res) => {
 
     const user = await UserModel.findById(id);
     if (!user) throw new HttpError('Unexpected user');
-
-    // console.log(user);
-    // console.log(user.report);
 
     await ReportModel.findByIdAndDelete(req.params.id);
 
