@@ -9,7 +9,7 @@ const emailVerification = async (req, res) => {
     if (!user) throw new HttpError("User with this id doesn't exist", 404);
 
     const token = await Token.findOne({
-      // userId: user._id,
+      userId: user._id,
       token: req.params.token,
     });
     if (!token) throw new HttpError('Invalid token', 400);
