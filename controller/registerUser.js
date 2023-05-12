@@ -24,7 +24,6 @@ const registerUser = async (req, res) => {
       token: crypto.randomBytes(32).toString('hex'),
     }).save();
 
-    // const message = `${process.env.BASE_URL}/user/verify/${newUser._id}/${token.token}`;
     const message = `${process.env.WEB_URL}/verification/${newUser._id}/${token.token}`;
     await sendEmail(newUser.email, 'Verify Email', message);
 
