@@ -12,12 +12,12 @@ const emailVerification = async (req, res) => {
       userId: user._id,
       token: req.params.token,
     });
-    if (!token) throw HttpError('Invalid token', 400);
+    if (!token) throw new HttpError('Invalid token', 400);
 
     await user.updateOne({ verified: true });
     await Token.findByIdAndRemove(token._id);
 
-    res.send('Email Verified');
+    res.json(response(true, 'Email Verified'));
   } catch (err) {
     res.status(400).json(response(false, err.message, err));
   }

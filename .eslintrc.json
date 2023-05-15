@@ -12,6 +12,7 @@
   "rules": {
     "linebreak-style": ["error", "windows"],
     "no-underscore-dangle": ["error", { "allow": ["_id", "foo_"] }],
-    "import/extensions": ["error", { "js": "ignorePackages" }]
+    "import/extensions": ["error", { "js": "ignorePackages" }],
+    "camelcase": "off"
   }
 }
