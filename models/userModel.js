@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import ReportModel from './reportModel.js';
+import EmployeeModel from './employeeModel.js';
 
 const userSchema = mongoose.Schema({
   email: {
@@ -18,6 +19,11 @@ const userSchema = mongoose.Schema({
     type: [mongoose.Types.ObjectId],
     default: [],
     ref: ReportModel,
+  },
+  employees: {
+    type: [mongoose.Types.ObjectId],
+    default: [],
+    ref: EmployeeModel,
   },
   verified: {
     type: Boolean,
