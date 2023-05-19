@@ -5,9 +5,6 @@ import EmployeeModel from '../models/employeeModel.js';
 import HttpError from '../utils/HttpError.js';
 
 const addEmployee = async (req, res) => {
-  console.log(req.body);
-  console.log(req.headers);
-
   try {
     const { token } = req.headers;
 
@@ -21,16 +18,10 @@ const addEmployee = async (req, res) => {
     });
 
     const user = await UserModel.findById(id);
-    console.log(user);
     if (!user) throw new HttpError("This user doesn't exist");
 
     const { name, surname, position } = req.body;
-
     const newEmployee = await EmployeeModel.create({ name, surname, position });
-
-    console.log(newEmployee);
-    // console.log('user: ', user.employees);
-    // console.log('user-type: ', typeof user.employees);
 
     await user.employees.push(newEmployee);
     await user.save();
