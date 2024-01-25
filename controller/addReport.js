@@ -25,8 +25,6 @@ const addReport = async (req, res) => {
 
     if (!user) throw new HttpError("This user doesn't exist", 400);
 
-    console.log('req.body: ', req.body);
-
     const {
       title,
       date,
