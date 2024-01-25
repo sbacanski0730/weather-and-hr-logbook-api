@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
     }
 
     if (!(await bcrypt.compare(password, loggingUser.password))) {
-      throw new HttpError('Wrong password', 400);
+      throw new HttpError('Wrong credentials', 400);
     }
 
     const token = jsonwebtoken.sign({ id: loggingUser._id.toString() }, process.env.PROJECT_SECRET);

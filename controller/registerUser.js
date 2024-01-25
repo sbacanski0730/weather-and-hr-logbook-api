@@ -14,6 +14,8 @@ const registerUser = async (req, res) => {
       throw new HttpError('This user already exist', 409);
     }
 
+    if (password.length < 5) throw new HttpError('Password must be at least 5 characters long');
+
     const newUser = await UserModel.create({
       email,
       password: await bcrypt.hash(password, 5),
@@ -29,7 +31,7 @@ const registerUser = async (req, res) => {
 
     res.status(201).json(response(true, 'Email send to verify new user', email));
   } catch (error) {
-    res.status(error.code).json(response(false, error.message));
+    res.status(409).json(response(false, error.message));
   }
 };
 
