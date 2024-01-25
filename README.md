@@ -38,16 +38,3 @@ This is a backend part of currently devoloping project [weather-and-hr-logbook](
 [![npm](https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png)](https://www.npmjs.com/)
 [![mongoDB](https://user-images.githubusercontent.com/25181517/182884177-d48a8579-2cd0-447a-b9a6-ffc7cb02560e.png)](https://www.mongodb.com/)
 [![Jest](https://user-images.githubusercontent.com/25181517/187955005-f4ca6f1a-e727-497b-b81b-93fb9726268e.png)](https://jestjs.io/) -->
-
-
-
-## ✍️ Installation Steps
-
->**Like now this instruction is in beta version - the proper instruction will be created at a later stage of the project. **
-
-> *To run this project you need to have **Node.js** installed.*
-
-1. Clone the repository
-2.
-3.
-4.
