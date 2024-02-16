@@ -11,12 +11,12 @@ const loginUser = async (req, res) => {
 
     const loggingUser = await UserModel.findOne({ email });
 
-    if (await Token.findOne({userId: loggingUser._id}))
-      throw new HttpError("This user doesn't have verified email.", 400);
-
     if (!loggingUser) {
       throw new HttpError("This user doesn't exist", 400);
     }
+
+    if (await Token.findOne({ userId: loggingUser._id }))
+      throw new HttpError("This user doesn't have verified email.", 400);
 
     if (!(await bcrypt.compare(password, loggingUser.password))) {
       throw new HttpError('Wrong credentials', 400);

@@ -1,14 +1,16 @@
 import request from 'supertest';
+import bcrypt from 'bcrypt';
 import app from '../../app.js';
 import UserModel from '../../models/userModel.js';
 
 beforeAll(async () => {
   const testUser = await UserModel.findOne({ email: 'test-login@gmail.com' });
   if (!testUser) {
-    await request(app).post('/auth/register').send({
+    await UserModel.create({
       email: 'test-login@gmail.com',
-      password: 'test123',
+      password: await bcrypt.hash('test123', 5),
     });
+    await UserModel.findOneAndUpdate({ email: 'test-login@gmail.com' }, { verified: true });
   }
 });
 
