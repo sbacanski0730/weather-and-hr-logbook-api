@@ -5,8 +5,6 @@ import HttpError from '../utils/HttpError.js';
 import ReportModel from '../models/reportModel.js';
 
 const addReport = async (req, res) => {
-  console.log('req.body: ', req.body);
-  console.log('req.headers: ', req.headers);
   try {
     const { token } = req.headers;
 
@@ -18,8 +16,6 @@ const addReport = async (req, res) => {
       }
       return decoded;
     });
-
-    console.log('user id: ', id);
 
     const user = await UserModel.findById(id);
 
@@ -60,7 +56,6 @@ const addReport = async (req, res) => {
       .status(201)
       .json(response(true, 'Report successfully added to user reports list', newReport));
   } catch (err) {
-    console.log(err);
     res.json(response(false, err.message, err));
   }
 };
