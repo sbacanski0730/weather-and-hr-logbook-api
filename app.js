@@ -6,6 +6,7 @@ import connectDatabase from './utils/connectDatabase.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import reportRoutes from './routes/reportRoutes.js';
+import swaggerDocs from './utils/swagger.js';
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/report', reportRoutes);
+
+swaggerDocs(app);
 
 // eslint-disable-next-line no-console
 connectDatabase(() => console.log('Database Connected'));

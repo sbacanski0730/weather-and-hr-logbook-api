@@ -19,9 +19,8 @@ const sendEmail = async (email, subject, text) => {
       subject,
       text,
     });
-    // console.log('email send successfully');
   } catch (err) {
-    // console.log('email not send');
+    // eslint-disable-next-line no-console
     console.log('email error: ', err);
   }
 };

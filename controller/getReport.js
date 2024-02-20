@@ -5,7 +5,6 @@ import UserModel from '../models/userModel.js';
 import HttpError from '../utils/HttpError.js';
 
 const getReport = async (req, res) => {
-  console.log('got a get request');
   try {
     if (!req.headers.token) throw new HttpError('Token has to be provided');
 

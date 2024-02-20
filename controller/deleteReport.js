@@ -5,7 +5,6 @@ import ReportModel from '../models/reportModel.js';
 import UserModel from '../models/userModel.js';
 
 const deleteReport = async (req, res) => {
-  console.log('usuwam');
   try {
     if (!req.headers.token) throw new HttpError("Token didn't provided");
     if (!req.params.id) throw new HttpError('Unknown ID');
